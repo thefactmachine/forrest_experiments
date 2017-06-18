@@ -1,0 +1,14 @@
+
+
+.Rproj.user
+.Rhistory
+.Rapp.history
+.RData
+.Rprofile
+.Rproj
+
+*.geojson
+
+
+
+
