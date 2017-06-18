@@ -7,8 +7,17 @@ nrow(ISLR::Auto) == 392
 set.seed(123)
 vct_random_row <- sample(nrow(ISLR::Auto))
 
-# ============= K fold cross validation =================
+# ========CROSS VALIDATION BASIC PROCESS ===============
+# split into test and training.....set parameters on training
+# then see how they go on test.......
+# K-FOLD 5 splits up into 5 groups....the test statistic 
+# is averaged.....for the 5 folds........
 
+# Set Polynomial = n  run this over Kfolds store K test statistics
+# Set Polynomial = n + 1 run this over Kfolds....
+# The total number of test statistics is Number of Polynomials * Number Folds
+
+# ============= K fold cross validation =================
 # folds <- cut(seq(1,nrow(ISLR::Auto)),breaks=10,labels=FALSE)
 
 #  Schau dir das an  1,1,1,1...2,2,2,....3,3,3,3 ..... 10
@@ -87,11 +96,6 @@ vct_expected_result
 
 
 all(vct_actual_result == vct_expected_result)
-
-
-
-
-
 
 
 
