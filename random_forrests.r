@@ -39,7 +39,7 @@ for(mtry in 1:13) {
   # Fit a Random Forrest model
   random_forrest_fit <- randomForest(medv~.,data = df_boston, subset = train, mtry = mtry, ntree = 400)
   
-  # Calculate training error
+  # Calculate out of bag error on training 
   vct_out_of_bag_error[mtry] <- random_forrest_fit$mse[400]
   
   # Calculate a vector of predictions on test 
@@ -48,6 +48,7 @@ for(mtry in 1:13) {
   # Calculate MSE for predictions on test data
   vct_test_error[mtry] <- with(df_boston[-train,], mean((medv - vct_predictions)^2))
   
+  # cat does not put carriage returns after
   cat(mtry," ")
 
   }
@@ -62,14 +63,15 @@ matplot(1:mtry, # X axis
         ylab = "Mean Squared Error")
 
 
-legend("topright",legend=c("Out of bag","Test"),pch=19,col=c("red","blue"))
-
+legend("topright",legend=c("Test erro","Out of bag err"),pch=19,col=c("red","blue"))
 
 # Not too difficult! Although the test-error curve drops below the OOB curve, 
 # these are estimates based on data, and so have their own standard errors 
 # (which are typically quite large). Notice that the points at the end with `mtry=13` correspond to bagging.
 
+# error estimates are very correlated and the data sets were not that large. 
 
+# default mtry for classification is sqrt(Number of predictors); regression it is (p / 3)
 
 
 
